@@ -1,27 +1,20 @@
-const apiKey = 'f6fb1744-bfb2-4515-b798-0731e85a246e';
-
 const getCat = () => {
-	const url = 'https://api.thecatapi.com/v1/images/search?';
-	const query = 'size=full&order=random&limit=9&page=0&format=json&bread_id=true';
+	const url = 'http://localhost:4000/cat/getCat';
+	const headers = {
+		Accept: '*/*',
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Allow-Methods': 'GET, POST',
+		'Access-Control-Allow-Headers':
+		'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers',
+		'Access-Control-Allow-Credentials': 'true'
+	};
 	const options = {
 		method: 'GET',
-		header: {
-			'x-api-key': apiKey
-		}
+		headers
 	};
-	return fetch(url + query, options)
+	return fetch(url, options)
 		.then((res) => res.json())
+		.catch((error) => error);
 };
 
-const getCategories = () => {
-	const url = 'https://api.thecatapi.com/v1/categories';
-	const options = {
-		method: 'GET',
-		header: {
-			'x-api-key': apiKey
-		}
-	};
-	return fetch(url, options).then((res) => res.json());
-};
-
-export { getCat, getCategories };
+export { getCat };

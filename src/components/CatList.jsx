@@ -1,45 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { List, Row, message } from 'antd';
-import { getCat } from '../services/CatRequest';
+import React, { useState } from 'react';
+import { Row, Spin, Button } from 'antd';
 import Cat from './Cat';
+import useCat from './../hooks/useCat';
+import './CatList.css';
 
 export default function CatList() {
-	useEffect(() => {
-		setLoading(true);
-		getCat()
-		.then((res) => {
-			setCatList(res);
-			setLoading(false);
-		})
-		.catch(error => message.error('Error al obtener la data. Intente mas tarde...'))
-		.finally(setLoading(false))
-	}, []);
+	const { isLoading, catList } = useCat();
+	const [currentPage, setCurrentPage] = useState(0);
 
-	const [catList, setCatList] = useState();
-	const [loading, setLoading] = useState();
+	const LIST_ITEM = 6;
+	const filterPage = () => {
+		return catList.slice(currentPage, currentPage + LIST_ITEM);
+	};
+
+	const nextPage = () => {
+		if (catList.length > currentPage + LIST_ITEM) {
+			setCurrentPage(currentPage + LIST_ITEM);
+		}
+	};
+
+	const prevPage = () => {
+		console.log(currentPage);
+		if (currentPage > 0) setCurrentPage(currentPage - LIST_ITEM);
+	};
 
 	return (
 		<div>
-			<List
-				grid={{
-					gutter: 0,
-					xs: 1,
-					sm: 2,
-					md: 3,
-					lg: 3,
-					xl: 3,
-					xxl: 3
-				}}
-				loading={loading}
-				dataSource={catList}
-				renderItem={(cat) => (
-					<List.Item key={cat.id}>
-						<Row justify='center'>
-							<Cat data={cat} />
-						</Row>
-					</List.Item>
-				)}
-			/>
+			<Spin tip={'Cargando...'} spinning={isLoading} delay={500} size='large'>
+				<Row justify='space-around'>
+					<Button onClick={prevPage}>Anterior</Button>
+					<Button onClick={nextPage}>Siguente</Button>
+				</Row>
+				<Row>
+					<div className='grid-container'>
+						{filterPage().map((cat) => {
+							return <Cat key={cat.id} loading={true} data={cat} />;
+						})}
+					</div>
+				</Row>
+			</Spin>
 		</div>
 	);
 }

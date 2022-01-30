@@ -7,7 +7,7 @@ export default function Cat(props) {
 	} = props;
 	return (
 		<>
-			<Image preview={false} width={200} height={200} src={url} />
+			<Image width={200} height={200} src={url} />
 		</>
 	);
 }
