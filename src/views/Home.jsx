@@ -1,14 +1,21 @@
 import React from 'react';
-import { Tabs, Layout, Select, Row, Col } from 'antd';
+import { Tabs, Layout, Row, Button } from 'antd';
 import CatList from '../components/CatList';
+import CatListCategory from '../components/CatListCategory';
+import { logOut } from '../services/login';
+
 const { TabPane } = Tabs;
-const { Content } = Layout;
-const { Option } = Select;
+const { Content, Header } = Layout;
 
 export default function home() {
 	return (
 		<div>
 			<Layout>
+				<Header>
+					<Button type='link' onClick={logOut}>
+						LogOut
+					</Button>
+				</Header>
 				<Content>
 					<Tabs defaultActiveKey='1' centered>
 						<TabPane tab='Home' key='1'>
@@ -16,19 +23,9 @@ export default function home() {
 								<CatList />
 							</Row>
 						</TabPane>
-						<TabPane tab='Por Categoria' key='2'>
-						<Row justify='center' gutter={4}>
-								<Col
-									lg={{ span: 6 }}
-									sm={{ span: 10 }}
-									xs={{ span: 8 }}>
-									<h4>Categoria</h4>
-									<Select style={{ width: '100%' }}>
-										<Option value='cat 1'>Cat 1</Option>
-										<Option value='cat 2'>Cat 2</Option>
-										<Option value='cat 3'>Cat 3</Option>
-									</Select>
-								</Col>
+						<TabPane tab='By Category' key='2'>
+							<Row justify='center' gutter={4}>
+								<CatListCategory />
 							</Row>
 						</TabPane>
 					</Tabs>

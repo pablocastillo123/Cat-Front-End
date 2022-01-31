@@ -1,4 +1,24 @@
 .ContainerLogin {
 	box-shadow: 2px 2px 5px #999;
 	padding: 40px;
+	background-color: #f0f2f5;
+}
+
+.ContainerloginBtn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.btnGoogle,.btnGithub {
+	margin: 5px;
+	color: white;
+	width: 250px;
+}
+
+.btnGithub {
+	background-color: black;
+}
+.btnGoogle{
+	background-color: #f44336;
 }

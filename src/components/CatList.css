@@ -18,3 +18,20 @@
 		grid-template-columns: repeat(1, 1fr);
 	}
 }
+
+.selectCategory {
+	min-width: 180px;
+	max-width: 300px;
+}
+
+.container-btn {
+	min-width: 180px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.p-5{
+	padding-inline: 15px;
+}
+
