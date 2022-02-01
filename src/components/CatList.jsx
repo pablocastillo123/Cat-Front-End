@@ -33,7 +33,7 @@ export default function CatList() {
 				<div className='grid-container'>
 					{catList &&
 						filterPage().map((cat) => {
-							return <Cat key={cat.id} loading={true} data={cat} />;
+							return <Cat key={cat._id} loading={true} data={cat} />;
 						})}
 				</div>
 			</Spin>

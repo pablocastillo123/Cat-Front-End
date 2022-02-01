@@ -36,7 +36,7 @@ export default function CatListCategory() {
 
 	const filterCatByCategory = () => {
 		return catList.filter((cat) => {
-			return cat.category.name === selectCategory;
+			return cat.categories.name === selectCategory;
 		});
 	};
 
